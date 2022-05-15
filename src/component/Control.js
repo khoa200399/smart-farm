@@ -3,8 +3,11 @@ import {
   ref,
   set,
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
-import { Card, Space, Switch } from 'antd';
+import { Card, Space, Switch,Row } from 'antd';
 import { Form } from 'antd';
+import CurtainIcon from "../icons/blinds.png"
+import WindowIcon from "../icons/window.png"
+
 export default function Control(props) {
   const { control,sensor, db } = props
 
@@ -32,11 +35,12 @@ export default function Control(props) {
   console.log(sensor,"--sensor")
 
   return (
-    <>
+    <div style={{border:"1px solid #e5e7eb",borderRadius:"8px",padding:"1rem 1rem",background:"white",margin:"0.5rem 0",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
       <h1>Control</h1>
 
-      <Form layout="vertical" style={{ display: "flex" }}>
-        <Space size={32}>
+      <Form layout="horizental">
+        <Space size={16}>
+          <Row>
           <Form.Item label="Curtain">
             <Switch checked={control.Curtain === 1 ? true : false} onChange={(e) => handleChange(e, "Curtain")} />
           </Form.Item>
@@ -46,7 +50,9 @@ export default function Control(props) {
           <Form.Item label="Fan Back">
             <Switch checked={control.FanBack === 1 ? true : false} onChange={(e) => handleChange(e, "FanBack")} />
           </Form.Item>
-          <Form.Item label="Fan Top">
+          </Row>
+         <Row>
+         <Form.Item label="Fan Top">
             <Switch checked={control.FanTop === 1 ? true : false} onChange={(e) => handleChange(e, "FanTop")} />
           </Form.Item>
           <Form.Item label="Motor Up">
@@ -55,24 +61,37 @@ export default function Control(props) {
           <Form.Item label="Motor Down">
             <Switch checked={control.MotorDown === 1 ? true : false} onChange={(e) => handleChange(e, "MotorDown")} />
           </Form.Item>
+         </Row>
         </Space>
       </Form>
 
-      <div style={{display:"flex"}}>
+      <div style={{display:"flex",justifyContent:"center"}}>
         <Space size={24}>
-        <Card bordered style={{ width: 80, height: 80, borderRadius: "8px",backgroundColor:sensor.CurtainDetect===1? "#22c55e":"#e5e7eb" }}>
-          <span style={{ fontSize: 24,color:sensor.DoorDetect===1? "white":"black" }}>
-            <i class="fa fa-box"></i>
+        <div
+        style={{
+          border: "1px solid #f3f4f6",
+          display: "flex",justifyContent:"center",alignItems:"center",
+          width: 80, height: 80, borderRadius: "8px",backgroundColor:sensor.CurtainDetect===1? "#4ade80":"#e5e7eb",boxShadow:"inset 0 2px 4px 0 rgb(0 0 0 / 0.05)"
+        }}
+        >
+         <span style={{ fontSize: 24,color:sensor.DoorDetect===1? "white":"black" }}>
+           <img src={CurtainIcon} alt="" width={32} />
           </span>
-        </Card>
+        </div>
 
-        <Card bordered style={{ width: 80, height: 80, borderRadius: "8px",backgroundColor:sensor.DoorDetect===1? "#22c55e":"#e5e7eb" }}>
-          <span style={{ fontSize: 24,color:sensor.DoorDetect===1? "white":"black" }}>
-            <i className="fas fa-door-open"></i>
+        <div
+        style={{
+          border: "1px solid #f3f4f6",
+          display: "flex",justifyContent:"center",alignItems:"center",
+          width: 80, height: 80, borderRadius: "8px",backgroundColor:sensor.DoorDetect===1? "#4ade80":"#e5e7eb",boxShadow:"inset 0 2px 4px 0 rgb(0 0 0 / 0.05)"
+        }}
+        >
+        <span style={{ fontSize: 24,color:sensor.DoorDetect===1? "white":"black" }}>
+          <img src={WindowIcon} alt="" width={32} />
           </span>
-        </Card>
+        </div>
         </Space>
       </div>
-    </>
+    </div>
   )
 }

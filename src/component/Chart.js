@@ -1,3 +1,4 @@
+import { Col, Row } from "antd";
 import Chart from "react-apexcharts";
 
 const getOptions = (label) => {
@@ -94,24 +95,99 @@ export const ChartRealtime = (props) => {
   const seriesTemp = getSeries(sensor.Temp)
   const optionsTemp = getOptions("Temperature")
 
+  const options = {
+    chart: {
+      id: "basic-bar",
+      color: "red"
+    },
+    title: {
+      text: 'Soil Moisture',
+      floating: true,
+      align: 'center',
+      style: {
+        color: '#444'
+      }
+    },
+    xaxis: {
+      categories: ["Area 1", "Area 2", "Area 3","Area 4","Area 5","Area 6"],
+    },
+    plotOptions: {
+      bar: {
+        borderRadius: 10,
+        dataLabels: {
+          position: 'top', // top, center, bottom
+        },
+        colors: {
+          ranges: [{
+            from: 0,
+            to: 30,
+            color: '#ef4444'
+          }, {
+            from: 30,
+            to: 70,
+            color: '#22c55e'
+          },
+          {
+            from: 70,
+            to: 100,
+            color: '#ef4444'
+          },
+          ]
+        },
+      }
+    },
+    dataLabels: {
+      enabled: true,
+      formatter: function (val) {
+        return val + "%";
+      },
+      offsetY: -20,
+      style: {
+        fontSize: '12px',
+        colors: ["#304758"]
+      }
+    },
+  }
+  const series = [
+    {
+      name: "series-1",
+      data: [sensor.landHum1, sensor.landHum2, sensor.landHum3,sensor.landHum4,sensor.landHum5,sensor.landHum6],
+    }
+  ]
 
-  return <div style={{display:"flex",justifyContent:"space-between",padding:"0 4rem"}}>
+
+  return <div style={{ padding: "0 4rem",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center" }}>
+    <Row>
+      <Col>
+        <Chart
+          series={seriesHum}
+          options={optionsHum}
+          type="radialBar"
+          width="400"
+          height="400"
+        />
+      </Col>
+
+
+      <Col>
+        <Chart
+          series={seriesTemp}
+          options={optionsTemp}
+          type="radialBar"
+          width="400"
+          height="400"
+        />
+      </Col>
+    </Row>
+
+
     <Chart
-      series={seriesHum}
-      options={optionsHum}
-      type="radialBar"
-      width="350"
+      series={series}
+      options={options}
+      type="bar"
+      width="700"
       height="350"
     />
-
-    <Chart
-      series={seriesTemp}
-      options={optionsTemp}
-      type="radialBar"
-      width="350"
-      height="350"
-    />
-
 
   </div>
 }

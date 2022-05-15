@@ -23,7 +23,7 @@ export default function HumTemp(props) {
   };
 
   return (
-    <div>
+    <div style={{border:"1px solid #e5e7eb",borderRadius:"8px",padding:"1rem 1rem",background:"white"}}>
       <h1>Auto Range</h1>
 
       <Form
