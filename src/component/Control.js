@@ -1,38 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
-  getDatabase,
   ref,
   set,
-  onValue
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
-import { Space, Switch } from 'antd';
+import { Card, Space, Switch } from 'antd';
 import { Form } from 'antd';
-
-export default function Control() {
-  const db = getDatabase();
-
-  const [control, setControl] = useState(null);
-  const [isRendered, setIsRendered] = useState(false);
-
-
-  useEffect(() => {
-    handleReadDB()
-  }, []);
-
-  const handleReadDB = () => {
-    onValue(ref(db, "/luanvan/Control"), (snapshot) => {
-      const data = snapshot.val();
-      if (data !== null) {
-        setControl(data)
-        setIsRendered(true)
-      }
-    })
-  }
+export default function Control(props) {
+  const { control,sensor, db } = props
 
   const handleChange = (e, key) => {
     const value = e
 
     switch (key) {
+      case "Curtain":
+        return set(ref(db, "/luanvan/Control/Curtain"), value ? 1 : 0);
       case "AirDoor":
         return set(ref(db, "/luanvan/Control/AirDoor"), value ? 1 : 0);
       case "FanBack":
@@ -48,49 +29,17 @@ export default function Control() {
     }
   }
 
-  // const handleOnChangeAirDoor = (e) => {
-  //   const data = getDatabase();
-  //   var val = e.target.checked;
-  //   //Set value
-  //   set(ref(data, "/luanvan/Control/AirDoor"), val ? 1 : 0);
-  // };
-
-  // const handleOnChangeFanBack = (e) => {
-  //   const data = getDatabase();
-  //   var val = e.target.checked;
-  //   //Set value
-  //   set(ref(data, "/luanvan/Control/FanBack"), val ? 1 : 0);
-  // };
-
-  // const handleOnChangeFanTop = (e) => {
-  //   const data = getDatabase();
-  //   var val = e.target.checked;
-  //   //Set value
-  //   set(ref(data, "/luanvan/Control/FanTop"), val ? 1 : 0);
-  // };
-
-  // const handleOnChangeMotorUp = (e) => {
-  //   const data = getDatabase();
-  //   var val = e.target.checked;
-  //   //Set value
-  //   set(ref(data, "/luanvan/Control/MotorUp"), val ? 1 : 0);
-  // };
-
-  // const handleOnChangeMotorDown = (e) => {
-  //   const data = getDatabase();
-  //   var val = e.target.checked;
-  //   //Set value
-  //   set(ref(data, "/luanvan/Control/MotorDown"), val ? 1 : 0);
-  // };
-
-  if (!isRendered) return <div>loading</div>
+  console.log(sensor,"--sensor")
 
   return (
     <>
       <h1>Control</h1>
 
       <Form layout="vertical" style={{ display: "flex" }}>
-        <Space>
+        <Space size={32}>
+          <Form.Item label="Curtain">
+            <Switch checked={control.Curtain === 1 ? true : false} onChange={(e) => handleChange(e, "Curtain")} />
+          </Form.Item>
           <Form.Item label="Air Door">
             <Switch checked={control.AirDoor === 1 ? true : false} onChange={(e) => handleChange(e, "AirDoor")} />
           </Form.Item>
@@ -108,49 +57,22 @@ export default function Control() {
           </Form.Item>
         </Space>
       </Form>
+
+      <div style={{display:"flex"}}>
+        <Space size={24}>
+        <Card bordered style={{ width: 80, height: 80, borderRadius: "8px",backgroundColor:sensor.CurtainDetect===1? "#22c55e":"#e5e7eb" }}>
+          <span style={{ fontSize: 24,color:sensor.DoorDetect===1? "white":"black" }}>
+            <i class="fa fa-box"></i>
+          </span>
+        </Card>
+
+        <Card bordered style={{ width: 80, height: 80, borderRadius: "8px",backgroundColor:sensor.DoorDetect===1? "#22c55e":"#e5e7eb" }}>
+          <span style={{ fontSize: 24,color:sensor.DoorDetect===1? "white":"black" }}>
+            <i className="fas fa-door-open"></i>
+          </span>
+        </Card>
+        </Space>
+      </div>
     </>
   )
-
-  // return (
-  //   <div className="Control">
-  //     <h1>Control device</h1>
-  //     <div className="control">
-  //       <label htmlFor="airdoor">Air Door</label>
-  //       <input
-  //         id="#airdoor"
-  //         type="checkbox"
-  //         onChange={handleOnChangeAirDoor}
-  //       />{" "}
-  //       <br />
-  //       <label htmlFor="fanback">Fan Back</label>
-  //       <input
-  //         id="#fanback"
-  //         type="checkbox"
-  //         onChange={handleOnChangeFanBack}
-  //       />{" "}
-  //       <br />
-  //       <label htmlFor="fantop">Fan Top</label>
-  //       <input
-  //         id="#fantop"
-  //         type="checkbox"
-  //         onChange={handleOnChangeFanTop}
-  //       />{" "}
-  //       <br />
-  //       <label htmlFor="motorup">Motor Up</label>
-  //       <input
-  //         id="#motorup"
-  //         type="checkbox"
-  //         onChange={handleOnChangeMotorUp}
-  //       />{" "}
-  //       <br />
-  //       <label htmlFor="motordown">Motor Down</label>
-  //       <input
-  //         id="#motordown"
-  //         type="checkbox"
-  //         onChange={handleOnChangeMotorDown}
-  //       />{" "}
-  //       <br />
-  //     </div>
-  //   </div>
-  // );
 }
