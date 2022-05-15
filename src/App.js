@@ -1,18 +1,12 @@
 import "./App.css";
-import "./component/HumTemp";
-import HumTemp from "./component/HumTemp";
-import Control from "./component/Control";
-import Info from "./component/Info"
+
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import { HomePage } from "./page/HomePage";
 
 function App() {
   return (
     <div className="App">
-      <h1>Test Database</h1>
-      <HumTemp></HumTemp>
-      <hr />
-      <Control></Control>
-      <hr />
-      <Info></Info>
+        <HomePage/>
     </div>
   );
 }
