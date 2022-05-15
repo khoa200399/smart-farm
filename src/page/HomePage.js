@@ -44,7 +44,7 @@ export const HomePage = () => {
         </Col>
 
         <Col span={6}>
-        <HumTemp autoRangeSelect={data.autoRangeSelect}></HumTemp>
+          <HumTemp autoRangeSelect={data.autoRangeSelect}></HumTemp>
           <Control control={data.control} db={db} sensor={data.sensor}></Control>
         </Col>
 
