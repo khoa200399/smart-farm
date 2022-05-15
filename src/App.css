@@ -1,7 +1,9 @@
 .App {
+  /* text-align: center; */
+}
+.App h1 {
   text-align: center;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +37,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Info .container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.Info .container .item {
+  text-align: center;
+  width: calc(100% / 3);
+}
+
+.Control{
+  max-width: 1200px;
+  margin: 0 20px;
+ 
+}
+
+.HumTemp {
+  max-width: 1200px;
+  margin: 0 20px;
 }
