@@ -12,7 +12,7 @@ export default function HumTemp(props) {
   const [form] = Form.useForm();
   const {autoRangeSelect}=props
   
-  const onUpdate = (values: any) => {
+  const onUpdate = (values) => {
     const data = getDatabase();
     set(ref(data, "/luanvan/AutoRangeSelect"), {
       MaxHum: Number(values.maxHum),
@@ -20,6 +20,7 @@ export default function HumTemp(props) {
       MinHum: Number(values.minHum),
       MinTemp: Number(values.minTemp),
     });
+    alert("Update done!")
   };
 
   return (
