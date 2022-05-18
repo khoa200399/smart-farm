@@ -1,13 +1,19 @@
 import "./App.css";
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { HomePage } from "./page/HomePage";
-import {LoginPage} from "./page/LoginPage"
+import { LoginPage } from "./page/LoginPage"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 
 function App() {
   return (
     <div className="App">
-        {/* <HomePage/> */}
-        <LoginPage></LoginPage>
+      <Router>
+        <Routes>
+          <Route  path="/" element={<HomePage/>}/>
+          <Route path="/login" element={<LoginPage/>}/>
+        </Routes>
+      </Router>
     </div>
   );
 }

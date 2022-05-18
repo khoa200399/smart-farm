@@ -2,8 +2,10 @@ import React from "react";
 import { Form, Input, Button, Checkbox, Card } from "antd";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  let navigate = useNavigate();
 
   const onFinish = (values) => {
     let user = '';
@@ -11,7 +13,7 @@ export default function Signup() {
     signInWithEmailAndPassword(auth, values.username, values.password)
       .then((userCredential) => {
         user = userCredential.user.email;
-        console.log(user);
+        navigate("/")
         alert("Login Success");
       })
       .catch((error) => {
