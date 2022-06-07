@@ -91,10 +91,10 @@ export default function Control(props) {
         style={{
           border: "1px solid #f3f4f6",
           display: "flex",justifyContent:"center",alignItems:"center",
-          width: 80, height: 80, borderRadius: "8px",backgroundColor:control.DoorDetect===1? "#4ade80":"#e5e7eb",boxShadow:"inset 0 2px 4px 0 rgb(0 0 0 / 0.05)"
+          width: 80, height: 80, borderRadius: "8px",backgroundColor:sensor.DoorDetect===1? "#4ade80":"#e5e7eb",boxShadow:"inset 0 2px 4px 0 rgb(0 0 0 / 0.05)"
         }}
         >
-        <span style={{ fontSize: 24,color:control.DoorDetect===1? "white":"black" }}>
+        <span style={{ fontSize: 24,color:sensor.DoorDetect===1? "white":"black" }}>
           <img src={WindowIcon} alt="" width={32} />
           </span>
         </div>
