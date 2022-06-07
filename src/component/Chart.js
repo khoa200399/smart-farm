@@ -90,10 +90,10 @@ const getSeries = (value) => {
 export const ChartRealtime = (props) => {
   const { sensor } = props
   const seriesHum = getSeries(sensor.Hum)
-  const optionsHum = getOptions("Humidity")
+  const optionsHum = getOptions("Humidity(%)")
 
   const seriesTemp = getSeries(sensor.Temp)
-  const optionsTemp = getOptions("Temperature")
+  const optionsTemp = getOptions("Temperature(°C)")
 
   const options = {
     chart: {
