@@ -53,7 +53,7 @@ export default function HumTemp(props) {
           <Input placeholder="Min Humidity" />
         </Form.Item>
         <Form.Item
-          label="Max Tempurater:"
+          label="Max Temperature:"
           required
           name="maxTemp"
           tooltip={{ title: 'Tooltip with customize icon', icon: <InfoCircleOutlined /> }}
@@ -61,7 +61,7 @@ export default function HumTemp(props) {
           <Input placeholder="Max Temperature" />
         </Form.Item>
         <Form.Item
-          label="Min Tempurater:"
+          label="Min Temperature:"
           required
           name="minTemp"
           tooltip={{ title: 'Tooltip with customize icon', icon: <InfoCircleOutlined /> }}
