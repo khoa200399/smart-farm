@@ -41,7 +41,7 @@ export default function Control(props) {
     <div style={{border:"1px solid #e5e7eb",borderRadius:"8px",padding:"1rem 1rem",background:"white",margin:"0.5rem 0",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
       <h1>Control</h1>
       <div>
-        <Form.Item label="Auto/Manual">
+        <Form.Item label="Manual">
           <Switch checked={control.AutoManual === 1 ? true : false} onChange={(e) => handleChange(e, "AutoManual")} />
         </Form.Item>
       </div>
