@@ -1,25 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-analytics.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut
- } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js"
-
-import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc
-  } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js";
-
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+import { getAuth} from "firebase/auth"
 
 
 

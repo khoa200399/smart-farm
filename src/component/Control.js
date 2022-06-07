@@ -1,8 +1,8 @@
 import React from "react";
 import {
   ref,
-  set,
-} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+  set
+} from 'firebase/database';
 import { Card, Space, Switch,Row } from 'antd';
 import { Form } from 'antd';
 import CurtainIcon from "../icons/blinds.png"

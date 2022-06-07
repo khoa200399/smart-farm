@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Button, Checkbox, Card } from "antd";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js";
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {

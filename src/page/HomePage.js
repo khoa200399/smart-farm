@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import {React,  useEffect, useState } from "react";
 import HumTemp from "../component/HumTemp";
 import Control from "../component/Control";
 import { Row, Col, Space, Button } from "antd";
-import { LogoutOutlined } from '@ant-design/icons'
+import { LogoutOutlined } from "@ant-design/icons";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
 import {
   ref,
   onValue,
-} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
+} from 'firebase/database';
 import { ChartRealtime } from "../component/Chart";
 
 
