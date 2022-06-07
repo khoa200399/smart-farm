@@ -13,15 +13,16 @@ export default function Signup() {
     signInWithEmailAndPassword(auth, values.username, values.password)
       .then((userCredential) => {
         user = userCredential.user.email;
-        navigate("/")
+        navigate("/home")
         alert("Login Success");
       })
       .catch((error) => {
         // const errorCode = error.code;
         errorMessage = error.message;
         console.log(errorMessage);
+        alert("Your email/password is wrong!!")
       });
-    };
+  };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -55,7 +56,7 @@ export default function Signup() {
         >
           <Form.Item
             label="Username"
-            name="username"            
+            name="username"
             rules={[
               {
                 required: true,

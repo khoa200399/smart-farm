@@ -7,6 +7,7 @@ import { Card, Space, Switch,Row } from 'antd';
 import { Form } from 'antd';
 import CurtainIcon from "../icons/blinds.png"
 import WindowIcon from "../icons/window.png"
+import RainIcon from "../icons/raining.png"
 
 export default function Control(props) {
   const { control,sensor, db } = props
@@ -27,6 +28,8 @@ export default function Control(props) {
         return set(ref(db, "/luanvan/Control/MotorDown"), value ? 1 : 0);
       case "MotorUp":
         return set(ref(db, "/luanvan/Control/MotorUp"), value ? 1 : 0);
+      case "AutoManual":
+        return set(ref(db, "/luanvan/Control/AutoManual"), value ? 1 : 0);
       default:
         return null
     }
@@ -37,7 +40,12 @@ export default function Control(props) {
   return (
     <div style={{border:"1px solid #e5e7eb",borderRadius:"8px",padding:"1rem 1rem",background:"white",margin:"0.5rem 0",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
       <h1>Control</h1>
-
+      <div>
+        <Form.Item label="Auto/Manual">
+          <Switch checked={control.AutoManual === 1 ? true : false} onChange={(e) => handleChange(e, "AutoManual")} />
+        </Form.Item>
+      </div>
+      
       <Form layout="horizental">
         <Space size={16}>
           <Row>
@@ -61,7 +69,7 @@ export default function Control(props) {
           <Form.Item label="Motor Down">
             <Switch checked={control.MotorDown === 1 ? true : false} onChange={(e) => handleChange(e, "MotorDown")} />
           </Form.Item>
-         </Row>
+          </Row> 
         </Space>
       </Form>
 
@@ -74,7 +82,7 @@ export default function Control(props) {
           width: 80, height: 80, borderRadius: "8px",backgroundColor:sensor.CurtainDetect===1? "#4ade80":"#e5e7eb",boxShadow:"inset 0 2px 4px 0 rgb(0 0 0 / 0.05)"
         }}
         >
-         <span style={{ fontSize: 24,color:sensor.DoorDetect===1? "white":"black" }}>
+         <span style={{ fontSize: 24,color:sensor.CurtainDetect===1? "white":"black" }}>
            <img src={CurtainIcon} alt="" width={32} />
           </span>
         </div>
@@ -83,11 +91,23 @@ export default function Control(props) {
         style={{
           border: "1px solid #f3f4f6",
           display: "flex",justifyContent:"center",alignItems:"center",
-          width: 80, height: 80, borderRadius: "8px",backgroundColor:sensor.DoorDetect===1? "#4ade80":"#e5e7eb",boxShadow:"inset 0 2px 4px 0 rgb(0 0 0 / 0.05)"
+          width: 80, height: 80, borderRadius: "8px",backgroundColor:control.AirDoor===1? "#4ade80":"#e5e7eb",boxShadow:"inset 0 2px 4px 0 rgb(0 0 0 / 0.05)"
         }}
         >
-        <span style={{ fontSize: 24,color:sensor.DoorDetect===1? "white":"black" }}>
+        <span style={{ fontSize: 24,color:control.AirDoor===1? "white":"black" }}>
           <img src={WindowIcon} alt="" width={32} />
+          </span>
+        </div>
+
+        <div
+        style={{
+          border: "1px solid #f3f4f6",
+          display: "flex",justifyContent:"center",alignItems:"center",
+          width: 80, height: 80, borderRadius: "8px",backgroundColor:sensor.Rain===1? "#4ade80":"#e5e7eb",boxShadow:"inset 0 2px 4px 0 rgb(0 0 0 / 0.05)"
+        }}
+        >
+        <span style={{ fontSize: 24,color:sensor.Rain===1? "white":"black" }}>
+          <img src={RainIcon} alt="" width={32} />
           </span>
         </div>
         </Space>

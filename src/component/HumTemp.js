@@ -14,12 +14,16 @@ export default function HumTemp(props) {
   
   const onUpdate = (values) => {
     const data = getDatabase();
-    set(ref(data, "/luanvan/AutoRangeSelect"), {
-      MaxHum: Number(values.maxHum),
-      MaxTemp: Number(values.maxTemp),
-      MinHum: Number(values.minHum),
-      MinTemp: Number(values.minTemp),
-    });
+    set(ref(data, "/luanvan/AutoRangeSelect/MaxHum"), parseInt(values.maxHum));
+    set(ref(data, "/luanvan/AutoRangeSelect/MinHum"), parseInt(values.minHum));
+    set(ref(data, "/luanvan/AutoRangeSelect/MaxTemp"), parseInt(values.maxTemp));
+    set(ref(data, "/luanvan/AutoRangeSelect/MinTemp"), parseInt(values.minTemp));
+    // set(ref(data, "/luanvan/AutoRangeSelect/"), {
+    //   MaxHum: parseInt(values.maxHum),
+    //   MaxTemp: parseInt(values.maxTemp),
+    //   MinHum: parseInt(values.minHum),
+    //   MinTemp: parseInt(values.minTemp),
+    // });
     alert("Update done!")
   };
 

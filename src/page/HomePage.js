@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import HumTemp from "../component/HumTemp";
 import Control from "../component/Control";
-import { Row, Col, Space } from "antd";
+import { Row, Col, Space, Button } from "antd";
+import { LogoutOutlined } from '@ant-design/icons'
 import { db } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 import {
   ref,
@@ -10,7 +12,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js";
 import { ChartRealtime } from "../component/Chart";
 
+
 export const HomePage = () => {
+  let navigate = useNavigate();
   const [data, setData] = useState({
     autoRangeSelect: null,
     control: null,
@@ -32,15 +36,19 @@ export const HomePage = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const handleClick = () => {
+    navigate("/");
+  }
 
   if (!isRendered) return null;
 
   return (
-    <div style={{backgroundColor: "#f3f4f6",width: "100vw",}}>
-      <h1 style={{fontSize:"50px"}}>SMART FARM</h1>
+    <div style={{ backgroundColor: "#f3f4f6", width: "100vw", padding: "10px 10px"}}>
+      <Button type="primary" onClick={handleClick} shape="circle" icon={<LogoutOutlined />} style={{display:"block"}} />
+      <h1 style={{ fontSize: "50px" }}>SMART FARM</h1>
       <div
         style={{
-          
+
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
